@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Chat room</title>
+  <link rel="stylesheet" href="/css/main.css">
+
+</head>
+<body >
+<button id="toggleBackground" class="toggle-background">🌞</button>
+<noscript>
+  <h2>Sorry! Your browser doesn't support Javascript</h2>
+</noscript>
+
+<div id="username-page">
+  <div class="username-page-container">
+    <h1 class="title">Enter the Chatroom</h1>
+    <form id="usernameForm" name="usernameForm">
+      <div class="form-group">
+        <input type="text" id="name" placeholder="Enter a cool username" autocomplete="off" class="form-control" required />
+      </div>
+      <div class="form-group">
+        <button type="submit" class="accent username-submit">Join the Chat</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<div id="chat-page" class="hidden">
+  <div class="chat-container">
+    <div class="chat-header">
+      <h2>Chat Away!</h2>
+    </div>
+
+    <div class="connecting">
+      Connecting...
+    </div>
+    <ul id="messageArea">
+
+    </ul>
+
+
+
+    <form id="messageForm" name="messageForm">
+      <div class="form-group">
+        <div class="input-group clearfix">
+          <input type="text" id="message" placeholder="Type a message..." autocomplete="off" class="form-control"/>
+          <button type="submit" class="primary">Send</button>
+            <button type="button" id="emojiButton" class="primary">😀</button>
+        </div>
+
+          <div id="emojiPicker" class="emoji-picker hidden">
+              <div class="emoji-categories">
+                  <button class="emoji-category" data-category="smileys">😊</button>
+                  <button class="emoji-category" data-category="animals">🐻</button>
+                  <button class="emoji-category" data-category="food">🍔</button>
+
+              </div>
+              <div class="emoji-container">
+
+              </div>
+          </div>
+      </div>
+    </form>
+  </div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.1.4/sockjs.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
+<script src="/js/main.js"></script>
+
+
+<script>
+function createFireworks() {
+    const count = 30;
+    const fireworksContainer = document.createElement('div');
+    fireworksContainer.classList.add('fireworks-container');
+    document.body.appendChild(fireworksContainer);
+
+    for (let i = 0; i < count; i++) {
+        let firework = document.createElement('div');
+        firework.classList.add('firework');
+        firework.style.left = `${Math.random() * 100}%`;
+        firework.style.animationDelay = `${Math.random() * 1.5}s`;
+        fireworksContainer.appendChild(firework);
+    }
+
+    setTimeout(() => {
+        document.body.removeChild(fireworksContainer);
+    }, 2000);
+}
+
+document.querySelector('.username-submit').addEventListener('click', createFireworks);
+</script>
+
+</body>
+</html>
